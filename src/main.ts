@@ -21,13 +21,13 @@ function addEventListener(eventName: string, elementId: string) {
 async function handleButtonClick() {
   try {
     // TODO: Scenario 01
-    // chrome.runtime.sendMessage('call-api', (response: string) => {
-    //   alert(response);
-    // });
+    chrome.runtime.sendMessage('call-api', (response: string) => {
+      alert(response);
+    });
 
     // TODO: Scenario 02
-    const response = await sendWrappedMessage({ action: "call-api" });
-    alert(response);
+    // const response = await sendWrappedMessage({ action: "call-api" });
+    // alert(response);
   } catch (error) {
     console.error("Error calling API:", error);
   }
