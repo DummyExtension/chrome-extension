@@ -20,7 +20,7 @@ function addEventListener(eventName: string, elementId: string) {
   }
 
   htmlElement?.addEventListener(eventName, async () => {
-    chrome.runtime.sendMessage('authenticate', (response: string) => {
+    chrome.runtime.sendMessage('call-api', (response: string) => {
       alert(response);
     });
   });
