@@ -1,13 +1,9 @@
 import './style.css'
 
-const app = document.querySelector<HTMLDivElement>('#app')!
+const app = document.querySelector<HTMLDivElement>('#app')!;
+app.innerHTML = `<button id="call-api-button">Call API</button>`;
 
-app.innerHTML = `
-  <button id="call-api-button">Call API</button>
-`
-document.addEventListener('DOMContentLoaded', () => {
-  addEventListener('click', 'call-api-button');
-});
+document.addEventListener('DOMContentLoaded', () => addEventListener('click', 'call-api-button'));
 
 function addEventListener(eventName: string, elementId: string) {
   if (!eventName || !elementId) return;
@@ -19,9 +15,7 @@ function addEventListener(eventName: string, elementId: string) {
     return;
   }
 
-  htmlElement?.addEventListener(eventName, async () => {
-    chrome.runtime.sendMessage('call-api', (response: string) => {
-      alert(response);
-    });
+  htmlElement?.addEventListener(eventName, () => {
+    chrome.runtime.sendMessage('call-api', (response: string) => alert(response));
   });
 }
