@@ -3,6 +3,25 @@ import './style.css'
 const app = document.querySelector<HTMLDivElement>('#app')!
 
 app.innerHTML = `
-  <h1>Hello Vite!</h1>
-  <a href="https://vitejs.dev/guide/features.html" target="_blank">Documentation</a>
+  <button id="call-api-button">Call API</button>
 `
+document.addEventListener('DOMContentLoaded', () => {
+  addEventListener('click', 'call-api-button');
+});
+
+function addEventListener(eventName: string, elementId: string) {
+  if (!eventName || !elementId) return;
+
+  const htmlElement = document.getElementById(elementId);
+  
+  if (!htmlElement){
+    console.log('error', `${elementId} element is not available`);
+    return;
+  }
+
+  htmlElement?.addEventListener(eventName, async () => {
+    chrome.runtime.sendMessage('authenticate', (response: string) => {
+      alert(response);
+    });
+  });
+}
